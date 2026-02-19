@@ -1,0 +1,64 @@
+# 3D Interactive Parallax Application
+
+Build an immersive 3D web application that responds to **device motion** (mobile tilt), **face detection** (head-tracking parallax), and **mouse/trackpad movement** (desktop fallback) to create a depth-rich, living 3D scene.
+
+## Technology Choices
+
+| Technology | Purpose |
+|---|---|
+| **Three.js** (r162 via CDN) | 3D rendering, lighting, post-processing |
+| **TensorFlow.js + Face Landmarks Detection** | Real-time face/head position tracking via webcam |
+| **Device Orientation API** | Mobile gyroscope-based parallax |
+| **Mouse/Trackpad Events** | Desktop fallback for parallax |
+
+## Proposed Changes
+
+### Application Structure
+
+#### [MODIFY] [index.html](file:///Users/apple/Kvs/3d_app/index.html)
+- Completely rewrite to serve as the main entry point
+- Include CDN links for Three.js, TensorFlow.js, and Face Landmarks Detection
+- Add a fullscreen canvas with UI overlay showing current tracking mode
+
+#### [NEW] [style.css](file:///Users/apple/Kvs/3d_app/style.css)
+- Dark theme with glassmorphism UI overlay
+- Mode indicator badges (Mouse / Gyroscope / Face Tracking)
+- Loading screen with animated spinner
+- Smooth transitions and micro-animations
+
+#### [NEW] [app.js](file:///Users/apple/Kvs/3d_app/app.js)
+Core application module containing:
+1. **3D Scene**: Multi-layered floating geometric objects (icosahedrons, torus knots, octahedrons) at different depths
+2. **Parallax System**: Objects at different Z-depths move at different rates based on input, creating a true 3D feel
+3. **Particle Field**: Hundreds of tiny glowing particles for atmospheric depth
+4. **Input Managers**:
+   - `MouseTracker` — maps cursor position to camera offset
+   - `DeviceMotionTracker` — uses `DeviceOrientationEvent` for mobile tilt
+   - `FaceTracker` — uses TensorFlow.js Face Landmarks to track head position via webcam
+5. **Lighting**: Ambient + multiple colored point lights that subtly shift
+6. **Post-processing**: Bloom/glow effect for a premium feel
+
+## How It Works
+
+```mermaid
+graph LR
+    A[Mouse Movement] --> D[Parallax Engine]
+    B[Device Gyroscope] --> D
+    C[Face Detection] --> D
+    D --> E[Camera Offset]
+    E --> F[3D Scene Layers Move]
+    F --> G[Depth Illusion]
+```
+
+- **Desktop**: Mouse position creates parallax camera shifts
+- **Mobile**: Tilting the device shifts the viewpoint via gyroscope
+- **Face Detection**: Webcam tracks your face/head position; moving your head left/right/up/down shifts the 3D perspective as if you're looking through a window
+
+## Verification Plan
+
+### Browser Testing
+1. Open [index.html](file:///Users/apple/Kvs/3d_app/index.html) in a local dev server: `npx -y serve /Users/apple/Kvs/3d_app`
+2. **Mouse parallax**: Move mouse around — 3D objects should shift with depth parallax
+3. **Face tracking**: Click the face-tracking toggle — webcam should activate and head movement should control the parallax
+4. **Visual quality**: Scene should have bloom/glow, floating particles, and smooth animations
+5. **Mobile**: Open on phone on same network — tilting device should shift the 3D perspective

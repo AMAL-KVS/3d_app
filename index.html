@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <meta name="description" content="Immersive 3D parallax experience with face detection, device motion, and mouse tracking" />
+  <title>3D Parallax Experience</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔮</text></svg>" />
+
+  <!-- Import Map for Three.js -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.162.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.162.0/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Loading Screen -->
+  <div id="loading-screen">
+    <div class="loader-ring"></div>
+    <p class="loader-text" id="loading-text">Initializing</p>
+  </div>
+
+  <!-- UI Overlay -->
+  <div id="ui-overlay">
+    <div class="top-bar">
+      <span class="app-title">3D Parallax</span>
+      <div class="mode-badges">
+        <button class="mode-badge active" id="mode-mouse">🖱 Mouse</button>
+        <button class="mode-badge gyro" id="mode-gyro">📱 Gyro</button>
+        <button class="mode-badge face" id="mode-face">👤 Face</button>
+      </div>
+    </div>
+    <div class="bottom-bar">
+      <span class="hint-text" id="hint-text">Move your cursor to explore the scene</span>
+    </div>
+  </div>
+
+  <!-- Crosshair -->
+  <div class="crosshair"></div>
+
+  <!-- Webcam Preview (hidden by default) -->
+  <div id="webcam-preview">
+    <video id="webcam-video" muted playsinline></video>
+  </div>
+
+  <!-- 3D App -->
+  <script type="module" src="app.js"></script>
+
+</body>
+</html>

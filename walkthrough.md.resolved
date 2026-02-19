@@ -1,0 +1,42 @@
+# 3D Interactive Parallax App — Walkthrough
+
+## What Was Built
+
+An immersive 3D web experience with **multi-layer parallax** that responds to three input modes:
+
+| Mode | Input | How it works |
+|------|-------|-------------|
+| **🖱 Mouse** | Cursor position | Objects shift with depth-based parallax |
+| **📱 Gyro** | Device tilt | Accelerometer drives the viewpoint |
+| **👤 Face** | Webcam head-tracking | TensorFlow.js tracks face position, lazily loaded on demand |
+
+## Files Created
+
+| File | Purpose |
+|------|---------|
+| [index.html](file:///Users/apple/Kvs/3d_app/index.html) | Entry point with importmap, UI overlay, loading screen |
+| [style.css](file:///Users/apple/Kvs/3d_app/style.css) | Dark glassmorphism theme, mode badges, responsive layout |
+| [app.js](file:///Users/apple/Kvs/3d_app/app.js) | Three.js 3D engine, 5-layer parallax, bloom, particles |
+
+## Key Features
+
+- **5 parallax depth layers** — objects at different Z-depths move at different rates
+- **Bloom post-processing** — glow effect via `UnrealBloomPass`
+- **600 floating particles** — additive blending for atmospheric depth
+- **Glass/glow/wireframe materials** — `MeshPhysicalMaterial` with transmission
+- **Smooth interpolation** — LERP-based camera following for buttery motion
+- **Lazy face detection** — TensorFlow.js only loads when user clicks "Face" button
+- **iOS gyroscope support** — handles `DeviceOrientationEvent.requestPermission()`
+
+## Verification
+
+![3D scene with floating geometric shapes, particles, and UI overlay](file:///Users/apple/.gemini/antigravity/brain/8f4ae397-66f7-470c-8c1b-0cbf78460d12/initial_load_check_1771485563629.png)
+
+![Browser recording of the 3D parallax app with mouse interaction](file:///Users/apple/.gemini/antigravity/brain/8f4ae397-66f7-470c-8c1b-0cbf78460d12/testing_3d_fixed_1771485541399.webp)
+
+- ✅ 3D scene renders with all geometric shapes and particles
+- ✅ Mouse parallax working — objects shift at different rates per depth layer
+- ✅ UI overlay displays mode badges and hint text
+- ✅ Loading screen appears and fades out
+- ✅ No JavaScript console errors
+- ✅ Dev server running at `http://localhost:3000`

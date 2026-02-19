@@ -1,0 +1,13 @@
+# 3D Interactive Application
+
+## Tasks
+- [x] Plan the 3D interactive application architecture
+- [x] Create the core HTML structure with Three.js setup
+- [x] Build the 3D scene with floating objects and parallax layers
+- [x] Implement mouse/trackpad movement tracking (desktop)
+- [x] Implement device orientation/motion tracking (mobile)
+- [x] Implement face detection for head-tracking parallax
+- [x] Add particle system and ambient effects
+- [x] Add UI overlay with mode indicators
+- [x] Polish with animations, lighting, and post-processing
+- [x] Verify in browser
